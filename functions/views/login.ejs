@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta name="google-site-verification" content="-r9-42OaiijcNFEbHg0HM3QdyfWyt6R-rEErIIRceak" />
+    <meta name="keywords" content="Arknights, 明日方舟, 抽卡, 尋訪, 國際服, 悠星服, 英服, 美服, 日服, 韓服, 尋訪紀錄, 紀錄分析">
+    <meta name="description" content="明日方舟悠星服（英文服、日文服、韓文服）尋訪紀錄分析工具，支持紀錄匯入、匯出、統計、圖表分析等功能">
+    <meta charset="utf-8" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer">
+    <title>登入頁 - 明日方舟悠星服尋訪紀錄分析</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="/css/your.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      }
+      .login-wrapper {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        padding: 2rem;
+        flex-wrap: wrap;
+      }
+      .login-box {
+        background: #121212;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        flex: 1 1 300px;
+        max-width: 25rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .login-box form {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+      .input-group {
+        margin-bottom: 1rem;
+      }
+      .input-label {
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      .login-input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #333;
+        border-radius: 0.25rem;
+        background: #000;
+        color: #e0e0e0;
+      }
+      .login-textarea {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #333;
+        border-radius: 0.25rem;
+        background: #000;
+        color: #e0e0e0;
+        resize: vertical;
+        font-family: monospace;
+      }
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: #10d1fe;
+        border: none;
+        border-radius: 0.25rem;
+        font-weight: bold;
+        color: #000;
+        cursor: pointer;
+        margin-top: auto;
+      }
+      @media (max-width: 768px) {
+        .login-wrapper {
+          flex-direction: column;
+          align-items: center;
+          padding: 1rem;
+        }
+        .login-box {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body class="dark-mode" style="background-color: #000000; color: #e0e0e0">
+    <!-- 大標題 -->
+    <div class="HgfD8Q" style="padding: 1.5rem; text-align: center">
+      <div class="tshJ_L" style="font-size: 1.5rem">
+        明日方舟悠星服尋訪紀錄分析
+      </div>
+    </div>
+
+    <!-- 最新消息 -->
+    <div class="x82bAA">
+      <div class="tshJ_L">最新消息</div>
+      <div class="ab1yWq">
+        <div class="wYL2n2 Q25EOd"></div>
+        <div class="wYL2n2 xW0Sk9"></div>
+        <div class="wYL2n2 m8kOmo"></div>
+        <div class="wYL2n2 Mric6f"></div>
+        <div class="Xo6v7v">
+          <div style="margin-bottom: 0.8rem; background-color: rgba(27, 209, 254, 0.15); border: 1px solid #1bd1fe; border-radius: 0.25rem; padding: 0.6rem; color: #fff;">
+            <strong>🌐 本網站僅支援悠星旗下之英、日、韓伺服器，點擊連結前往<a href="https://arknights-txwy-gacha.web.app" target="_blank" style="color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;">繁中服</a>、<a href="https://arkgacha.kwer.top/" target="_blank" style="color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;">簡中服</a>尋訪紀錄分析</strong>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 登入區塊容器 -->
+    <div class="login-wrapper">
+      <!-- 方法一：Cookie + Token -->
+      <div class="login-box">
+        <div class="tshJ_L" style="margin-bottom: 1rem">
+          方法一：Cookie（紀錄獲取）
+        </div>
+        <form id="cookieForm" method="post" action="/login">
+          <input type="hidden" name="method" value="cookie" />
+          <div class="input-group">
+            <label class="input-label">伺服器 (Server)</label>
+            <select name="server" class="login-input" required>
+              <option value="jp">日文服 (account.yostar.co.jp)</option>
+              <option value="en">英文服 (account.yo-star.com)</option>
+              <option value="kr">韓文服 (account.yostar.kr)</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label class="input-label">YSSID Cookie</label>
+            <textarea name="yssid" class="login-textarea" required rows="2"></textarea>
+          </div>
+          <div class="input-group">
+            <label class="input-label">YSSID.sig</label>
+            <textarea name="yssidSig" class="login-textarea" required rows="2"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">
+            登入
+          </button>
+        </form>
+      </div>
+
+      <!-- 方法二：Existing ID 登入 -->
+      <div class="login-box">
+        <div class="tshJ_L" style="margin-bottom: 1rem">
+          方法二：UID（已獲取紀錄查詢）
+        </div>
+        <form method="post" action="/login">
+          <input type="hidden" name="method" value="existing" />
+          <div class="input-group">
+            <label class="input-label">使用者 ID</label>
+            <input name="uid" class="login-input" type="text" required />
+          </div>
+          <button type="submit" class="submit-btn">
+            登入
+          </button>
+        </form>
+      </div>
+
+      <!-- 方法三：上傳 JSON 登入 -->
+      <div class="login-box">
+        <div class="tshJ_L" style="margin-bottom: 1rem">
+          方法三：JSON（上傳紀錄）
+        </div>
+        <form id="uploadForm">
+          <input type="hidden" name="method" value="upload" />
+          <div class="input-group">
+            <label class="input-label">使用者 ID</label>
+            <input name="uid" id="uploadUid" class="login-input" type="text" required />
+          </div>
+          <div class="input-group">
+            <label class="input-label">visit_logs.json 檔案</label>
+            <input name="file" id="uploadFile" class="login-input" style="padding: 0.35rem;" type="file" accept="application/json" required />
+          </div>
+          <button type="submit" class="submit-btn">
+            上傳並登入
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 使用說明 -->
+    <div class="x82bAA">
+      <div class="tshJ_L">使用說明</div>
+      <div class="ab1yWq">
+        <div class="wYL2n2 Q25EOd"></div>
+        <div class="wYL2n2 xW0Sk9"></div>
+        <div class="wYL2n2 m8kOmo"></div>
+        <div class="wYL2n2 Mric6f"></div>
+        <div class="Xo6v7v">
+          <div>
+            首次使用必須先獲取或上傳，以下是方法一（網站獲取）的使用說明：（需要瀏覽器的開發人員工具）<br />
+            請在<a href="https://account.yostar.co.jp" target="_blank">日文服官方網站</a>、<a href="https://account.yo-star.com" target="_blank">英文服官方網站</a>或<a href="https://account.yostar.kr" target="_blank">韓文服官方網站</a>登入後，使用 F12 開發人員工具，隨後在「應用程式／Application」找到「Cookie」中「YSSID」以及「YSSID.sig」的值並填入。<br />
+          </div>
+          <div>
+            本網站不會保留您的 Cookie，僅作為單次連線向官方伺服器調閱抽卡紀錄之過渡憑證。此憑證在伺服器用畢後即刻銷毀，絕不持久化儲存於任何資料庫中。不過，為避免任何風險，建議在完成獲取後回到上述之官方網站登出。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 工具簡介 (SEO 優化區塊) -->
+    <div class="x82bAA">
+      <div class="tshJ_L">關於本工具</div>
+      <div class="ab1yWq">
+        <div class="wYL2n2 Q25EOd"></div>
+        <div class="wYL2n2 xW0Sk9"></div>
+        <div class="wYL2n2 m8kOmo"></div>
+        <div class="wYL2n2 Mric6f"></div>
+        <div class="Xo6v7v">
+          <div style="line-height: 1.6; color: #ccc; margin-bottom: 0.5rem;">
+            本站是一個專為《明日方舟》悠星旗下英文、日文、韓文伺服器的玩家量身打造的<strong>抽卡紀錄導出、分析與視覺化統計工具</strong>。您可以從官方網站獲取您的抽卡歷史紀錄，或將過去的紀錄導入本站，支持資料從匯入、獲取、合併、暫存、匯出備份的一條龍服務。
+          </div>
+          <div style="line-height: 1.6; color: #ccc;">
+            <strong>主要功能與特色包含：</strong><br>
+            • <strong>統計分析</strong>：自動計算各卡池（標準、中堅、限定）的已墊保底抽數、平均出金機率，並提供色彩豐富的分佈圖表。<br>
+            • <strong>資料管理</strong>：獲取紀錄後您可以隨時以 JSON 格式匯入、匯出、備份、覆蓋、清除，保障您的資料安全。<br>
+            • <strong>跨平台支援（開發中）</strong>：可透過多種登入方式（網頁、插件、APP、JSON 匯入、UID 查詢）輕鬆更新、查看您的數據。<br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="x82bAA">
+      <div class="tshJ_L">注意事項</div>
+      <div class="ab1yWq">
+        <div class="wYL2n2 Q25EOd"></div>
+        <div class="wYL2n2 xW0Sk9"></div>
+        <div class="wYL2n2 m8kOmo"></div>
+        <div class="wYL2n2 Mric6f"></div>
+        <div class="Xo6v7v">
+          <div>1：本網站不保證任何資料的正確性或完整性，本網站不保證任何使用者的資料留存與否，本網站將不定時清除任意紀錄且不另行告知，請在每次查詢完成後自行將紀錄導出，若有刪除紀錄的需求，可使用「方法三：上傳 JSON」功能上傳空白檔案。</div>
+          <div>2：請注意，由於方法二的存在，任何人都可以藉由你的 UID 訪問這裡的紀錄，若有顧慮請在完成獲取後及時刪除。</div>
+          <div>3：請注意，由於方法三的存在，任何人都可以藉由你的 UID 覆蓋或刪除這裡的紀錄，請在查詢完成後及時將紀錄導出。</div>
+          <div>4：如需在查詢過程中合併過往紀錄，請先使用「方法三：上傳 JSON」功能，將過往的 visit_logs.json 檔案上傳，登出後再使用「方法一：Cookie」登入。「方法二：Existing ID 登入」亦可用於檢查過往紀錄是否存在或完整。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 免責聲明 -->
+    <div class="x82bAA">
+      <div class="tshJ_L">免責聲明</div>
+      <div class="ab1yWq">
+        <div class="wYL2n2 Q25EOd"></div>
+        <div class="wYL2n2 xW0Sk9"></div>
+        <div class="wYL2n2 m8kOmo"></div>
+        <div class="wYL2n2 Mric6f"></div>
+        <div class="Xo6v7v">
+          <div>1：本網站與遊戲公司（如鷹角網路、龍成網路、艾瑞爾網路、悠星網路或蒙塔山工作室）無任何關聯，也未經其授權。</div>
+          <div>2：任何使用本網站的人士，須自行承擔一切風險，網站作者不保證使用本網站不會違反任何機構的使用條款或任何地區的法律規範，網站作者不保證使用本網站不會造成任何個人資料的洩漏，網站作者不會負責任何因使用本網站而引致之損失，網站作者不會作出任何默示的擔保。</div>
+          <div>3：本網站僅供學術研究與個人用途，禁止用於任何商業用途或轉售。</div>
+          <div>4：網站內使用的遊戲圖片、動畫、音訊、文字原文、風格、樣式與部分版面設計，僅用於更好地表現遊戲資料，其版權屬於上海悠星網路科技有限公司、上海鷹角網路科技有限公司或以上之關聯公司。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 給一個空間防止網頁顯示不全 -->
+    <div style="height: 4rem;"></div>
+
+    <!-- 錯誤訊息顯示 -->
+    <% if (typeof flash !== 'undefined' && flash) { %>
+    <div style="position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); background: #ff4444; color: #fff; padding: 0.75rem 1.5rem; border-radius: 0.5rem; z-index: 1000;">
+      <%= flash %>
+    </div>
+    <% } %>
+
+    <!-- 等待遮罩 -->
+    <div id="loadingOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); color: #fff; font-size: 1.5rem; text-align: center; line-height: 100vh; z-index: 1000;">
+      正在抓取資料，請稍候…
+    </div>
+
+    <script>
+      document.getElementById("cookieForm").addEventListener("submit", function () {
+        document.getElementById("loadingOverlay").style.display = "block";
+      });
+
+      document.getElementById("uploadForm").addEventListener("submit", async function(e) {
+          e.preventDefault();
+          document.getElementById("loadingOverlay").style.display = "block";
+          
+          const uid = document.getElementById("uploadUid").value;
+          const fileInput = document.getElementById("uploadFile");
+          
+          if (!fileInput.files || fileInput.files.length === 0) {
+              alert("請選擇檔案");
+              document.getElementById("loadingOverlay").style.display = "none";
+              return;
+          }
+          
+          const file = fileInput.files[0];
+          const reader = new FileReader();
+          reader.onload = async function(evt) {
+              try {
+                  const logs = JSON.parse(evt.target.result);
+                  const res = await fetch('/login', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ method: 'upload', uid: uid, logs: logs })
+                  });
+                  
+                  if (res.redirected) {
+                      window.location.href = res.url;
+                  } else if (res.ok) {
+                      window.location.href = '/';
+                  } else {
+                      const errorText = await res.text();
+                      alert("上傳失敗: " + errorText);
+                      document.getElementById("loadingOverlay").style.display = "none";
+                  }
+              } catch (err) {
+                  alert("讀取檔案失敗或格式不正確: " + err.message);
+                  console.error(err);
+                  document.getElementById("loadingOverlay").style.display = "none";
+              }
+          };
+          reader.readAsText(file);
+      });
+    </script>
+    <!-- Global Footer Menu -->
+    <div id="footer-menu-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99999; font-family: sans-serif; user-select: none;">
+      <div id="footer-menu-links" style="display: none; flex-direction: column; align-items: flex-end; margin-bottom: 0.5rem; gap: 0.5rem;">
+        <a href="https://github.com/kaihuang1122/Arknights-txwy-Gacha-Analyze" target="_blank" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'">GitHub 原始碼</a>
+        <a href="/privacy" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'">隱私權政策</a>
+        <a href="javascript:void(0);" onclick="document.body.scrollTo({top: 0, behavior: 'smooth'}); document.documentElement.scrollTo({top: 0, behavior: 'smooth'}); window.scrollTo({top: 0, behavior: 'smooth'});" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'">↑ 回到頁首</a>
+      </div>
+      <div id="footer-menu-toggle" style="background: rgba(0, 0, 0, 0.8); width: 3rem; height: 3rem; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 2px solid #1bd1fe; float: right; transition: all 0.3s; color: #1bd1fe; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+        ▼
+      </div>
+    </div>
+    <script>
+      document.getElementById('footer-menu-toggle').addEventListener('click', function(e) {
+        const links = document.getElementById('footer-menu-links');
+        if (links.style.display === 'none') {
+          links.style.display = 'flex';
+          this.innerHTML = '▲';
+          this.style.background = 'rgba(27, 209, 254, 0.2)';
+        } else {
+          links.style.display = 'none';
+          this.innerHTML = '▼';
+          this.style.background = 'rgba(0, 0, 0, 0.8)';
+        }
+        e.stopPropagation();
+      });
+      document.addEventListener('click', function(e) {
+        const links = document.getElementById('footer-menu-links');
+        const toggle = document.getElementById('footer-menu-toggle');
+        if (links && links.style.display === 'flex' && !document.getElementById('footer-menu-container').contains(e.target)) {
+          links.style.display = 'none';
+          toggle.innerHTML = '▼';
+          toggle.style.background = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+    </script>
+  </body>

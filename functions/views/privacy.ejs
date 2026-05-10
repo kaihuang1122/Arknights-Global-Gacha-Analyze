@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="referrer" content="no-referrer">
+  <title>隱私權政策 - 明日方舟抽卡紀錄</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #000000;
+      color: #e0e0e0;
+      font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1 {
+      color: #1bd1fe;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #333;
+      padding-bottom: 0.5rem;
+    }
+    h2 {
+      color: #fff;
+      margin-top: 2rem;
+    }
+    p {
+      color: #bbb;
+      margin-bottom: 1rem;
+    }
+    ul {
+      color: #bbb;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #1bd1fe;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 2rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      color: #fff;
+    }
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/login" class="back-btn">← 返回首頁</a>
+    
+    <h1>隱私權政策 (Privacy Policy)</h1>
+    
+    <p>最後更新日期 (Last Updated)：2026 年 5 月</p>
+
+    <h2>1. 簡介 (Introduction)</h2>
+    <p>「明日方舟悠星服尋訪紀錄分析工具」(Arknights Global Gacha Helper) 是一個完全開源的網頁工具與對應的 Chromium 擴充功能，旨在協助玩家匯出與統計其遊戲內的尋訪（抽卡）紀錄。</p>
+    <p>本隱私權政策說明我們的網站引擎與輔助擴充功能如何處理您的資料。</p>
+
+    <h2>2. 我們收集哪些資料 (Data We Collect)</h2>
+    <p>為了提供匯出服務，本工具僅會在您的明確操作下，從您的瀏覽器中自動或手動讀取以下特定的驗證資訊 (Authentication Information)：</p>
+    <ul>
+      <li>您的登入 Cookie (用於確認登入狀態的 Cookie)</li>
+    </ul>
+
+    <h2>3. 我們如何使用您的資料 (How We Use Your Data)</h2>
+    <ul>
+      <li><strong>單一用途 (Single Purpose)：</strong> 這些驗證資訊「僅且唯一」用於向悠星網路 (Yostar) 的官方伺服器發送符合規範的 API 請求，以下載您的尋訪紀錄，並於完成後立即銷毀。</li>
+      <li><strong>無第三方分享 (No Third-Party Sharing)：</strong> 我們絕對不會將這些資訊分享給任何第三方服務、廣告商或資料仲介。</li>
+      <li><strong>不作其他用途：</strong> 您的憑證不會被用來執行除了「獲取抽卡紀錄」以外的任何未經授權的操作。</li>
+    </ul>
+
+    <h2>4. 資料傳輸與儲存 (Data Transfer and Storage)</h2>
+    <p>由於官方的 API 設計有安全性考量（CORS 限制），擴充功能需要將取得的驗證資訊透過 HTTPS 以加密的方式發送到我們的 Firebase 伺服器進行代理請求與處理。</p>
+    <ul>
+      <li><strong>安全傳輸：</strong> 您與我們伺服器之間的所有通訊皆被 HTTPS / TLS 強制加密。</li>
+      <li><strong>無敏感資訊之持久儲存 (No Persistent Storage of Tokens)：</strong> 我們伺服器在取得您的紀錄後，會將您的尋訪紀錄 (Gacha Records) 暫時或經過轉換後快取至我們的 Firebase 雲端資料庫（僅以您的遊戲 UID 作為匿名索引），以便提供統計圖表功能。但您<strong>於Gryphline 網站的登入狀態、驗證 Cookie 與 Token 絕對不會被持久儲存在我們的資料庫中</strong>，並在當次請求處理完畢後立即被銷毀。</li>
+    </ul>
+
+    <h2>5. 擴充功能權限聲明 (Extension Permissions Justification)</h2>
+    <p>我們的 Chromium 擴充功能需要以下權限才能正常且安全地運作：</p>
+    <ul>
+      <li><strong><code>cookies</code>：</strong> 用於讀取您目前在悠星網路 (Yostar) 登入頁面的認證 Cookie。</li>
+      <li><strong><code>scripting</code>：</strong> 用於在官方頁面環境中執行極小的局部腳本，以成功提取存放在 <code>localStorage</code> 內的 <code>X-Role-Token</code>。</li>
+      <li><strong><code>activeTab</code>：</strong> 確保擴充功能僅在您正處於官方頁面且主動點擊按鈕時才會被觸發。</li>
+      <li><strong><code>storage</code>：</strong> 在您的本機暫存設定或提取到的憑證，以傳遞給我們的分析頁面。</li>
+    </ul>
+
+    <h2>6. 使用者的權利 (Your Rights & Consent Revocation)</h2>
+    <p>使用本工具即視為您同意我們短暫處理您的驗證資訊以獲取資料。</p>
+    <p>如果您希望停止使用服務並撤銷同意，您只需：</p>
+    <ol>
+      <li>點擊網頁上的「登出」按鈕清空本機登入狀態。</li>
+      <li>移除該 Chromium 擴充功能。</li>
+      <li>（可選）前往<a href="https://account.yostar.co.jp">Yostar 官方網站</a>登出，以無效化您提交的資料。</li>
+    </ol>
+
+    <h2>7. 聯絡我們 (Contact Us)</h2>
+    <p>如果您對本隱私權政策有任何疑問、建議，或任何與資料隱私相關的疑慮，請隨時前往<a href="https://github.com/kaihuang1122/Arknights-txwy-Gacha-Analyze/issues">專案的開源倉庫</a>提出 Issue，我們將盡快回覆您。</p>
+  </div>
+</body>
+</html>
