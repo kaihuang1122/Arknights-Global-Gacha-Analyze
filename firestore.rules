@@ -1,0 +1,14 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      // 由於本專案的所有資料存取 (包含登入、上傳、讀取紀錄等) 都是透過後端
+      // Node.js (Firebase Functions 使用 Admin SDK) 來統一處理的。
+      // Admin SDK 擁有最高級別的權限，會自動無視並繞過這裡的安全性規則。
+      // 因此，為了避免任何惡意使用者從前端直接竄改或讀取資料庫，
+      // 最安全的做法就是「全面禁止」所有來自前端的直接連線存取。
+      allow read, write: if false;
+    }
+  }
+}
