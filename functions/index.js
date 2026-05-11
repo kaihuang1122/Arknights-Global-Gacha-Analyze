@@ -54,6 +54,13 @@ app.use((req, res, next) => {
     res.cookie('lang', lang, { maxAge: 31536000000, httpOnly: true }); // 1 year
     
     res.locals.lang = lang;
+    
+    const protocol = req.get('x-forwarded-proto') || req.protocol;
+    const host = req.get('host');
+    const pathName = req.originalUrl.split('?')[0];
+    res.locals.baseUrl = `${protocol}://${host}${pathName}`;
+    res.locals.currentUrl = req.query.lang ? `${res.locals.baseUrl}?lang=${req.query.lang}` : res.locals.baseUrl;
+
     res.locals.t = (key) => {
         let val = locales[lang][key];
         if (val !== undefined) return val;
