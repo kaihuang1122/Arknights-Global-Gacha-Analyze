@@ -39,6 +39,30 @@ app.use(express.static(path.join(__dirname, '../public'))); // Serving CSS logic
 const cookieParser = require('cookie-parser');
 app.use(cookieParser('firebase-arknights-secret'));
 
+// i18n Middleware
+const fs = require('fs');
+const locales = {
+    'zh-tw': JSON.parse(fs.readFileSync(path.join(__dirname, 'locales/zh-tw.json'), 'utf8')),
+    'zh-cn': JSON.parse(fs.readFileSync(path.join(__dirname, 'locales/zh-cn.json'), 'utf8')),
+    'en-us': JSON.parse(fs.readFileSync(path.join(__dirname, 'locales/en-us.json'), 'utf8')),
+    'ja-jp': JSON.parse(fs.readFileSync(path.join(__dirname, 'locales/ja-jp.json'), 'utf8'))
+};
+
+app.use((req, res, next) => {
+    let lang = req.query.lang || req.cookies.lang || 'zh-tw';
+    if (!locales[lang]) lang = 'zh-tw';
+    res.cookie('lang', lang, { maxAge: 31536000000, httpOnly: true }); // 1 year
+    
+    res.locals.lang = lang;
+    res.locals.t = (key) => {
+        let val = locales[lang][key];
+        if (val !== undefined) return val;
+        val = locales['zh-tw'][key];
+        return val !== undefined ? val : key;
+    };
+    next();
+});
+
 app.get('/', async (req, res) => {
     const uid = req.signedCookies.__session;
     if (!uid) {

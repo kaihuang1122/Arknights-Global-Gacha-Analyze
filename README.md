@@ -2,23 +2,23 @@
 
 ## Features / 功能
 
-* **Modern Serverless Architecture**: Fully migrated from Python/Flask to Node.js/Express, deployed on Firebase Functions (2nd Gen) and Firebase Hosting, providing excellent scalability and extremely low maintenance costs.
-* **Modern Serverless Architecture / 現代化無伺服器架構**: 全面從 Python/Flask 遷移至 Node.js / Express，並部署於 Firebase Functions (2nd Gen) 與 Firebase Hosting，提供極佳的擴展性與極低的維護成本。
+* **Modern Serverless Architecture**: Deployed on Firebase Functions (2nd Gen) and Firebase Hosting, providing excellent scalability and extremely low maintenance costs.
+* **現代化無伺服器架構**: 使用 Firebase Functions (2nd Gen) 與 Firebase Hosting，提供極佳的擴展性與極低的維護成本。
 
-* **Database Integration**: Uses Firebase Firestore to securely store user gacha records, bypassing traditional file limiting arrays, allowing dynamic merging and updating across devices.
-* **Database Integration / 資料庫整合**: 使用 Firebase Firestore 安全儲存用戶的抽卡紀錄 (JSON Stringified Array 以突破寫入限制)，不再依賴本地端檔案 I/O，能動態合併與更新跨設備的老紀錄。
+* **Database Integration**: Uses Firebase Firestore to securely store user gacha records.
+* **資料庫整合**: 使用 Firebase Firestore 安全儲存用戶的抽卡紀錄。
 
-* **Dynamic Frontend**: Utilizes the EJS template engine and completely upgrades the original backend-generated Python Matplotlib pie charts to real-time frontend rendering with Chart.js, supporting responsive layouts for both mobile and desktop.
-* **Dynamic Frontend / 動態前端介面**: 採用 EJS 模板引擎，並將原先後端生成的 Python Matplotlib 圓餅圖，全面升級為前端即時渲染的 Chart.js，支援手機與電腦的響應式 (Responsive) 排版。
+* **Dynamic Frontend**: Utilizes the EJS template engine for real-time frontend rendering with Chart.js, supporting responsive layouts for both mobile and desktop.
+* **動態前端介面**: 採用 EJS 模板引擎，並使用前端即時渲染的 Chart.js，支援手機與電腦的響應式 (Responsive) 排版。
 
 * **Enhanced Analytics**: Advanced analysis interface supporting layered collapsing of consecutive pull histories, "pity" accumulation statistics across gacha pools, and complete export functionality.
-* **Enhanced Analytics / 進階資料分析**: 更進階的分析介面，支援連續抽出歷史的分層折疊、跨卡池的「已墊」累積抽數統計，以及完整的匯出 (Export) 功能。
+* **進階資料分析**: 更進階的分析介面，支援連續抽出歷史的分層折疊、跨卡池的「已墊」累積抽數統計，以及完整的匯出 (Export) 功能。
 
 * **Extension Ecosystem**: Fully integrated with the developed Chromium extension "One-Click Token Extractor", perfectly solving the high-barrier process of manually opening F12 developer tools to copy data.
-* **Extension Ecosystem / 擴充功能生態**: 完全整合開發的 Chromium 擴充功能「一鍵截取 Token」，完美解決必須手動開啟 F12 開發者工具複製資料的高門檻流程。
+* **擴充功能生態**: 完全整合開發的 Chromium 擴充功能「一鍵截取 Token」，完美解決必須手動開啟 F12 開發者工具複製資料的高門檻流程。
 
-* **Security & Cost Control**: Implements `robots.txt` and `express-rate-limit` to defend against abnormal traffic, and sets the maximum server execution instances (`maxInstances: 3`), ensuring no extra paid quota is consumed under the Blaze billing plan.
-* **Security & Cost Control / 安全與成本控制**: 實裝 `robots.txt`、`express-rate-limit` 防禦異常流量，並設定伺服器最高執行實例 (`maxInstances: 3`)，保障 Blaze 計費方案下不花費任何額外的付費額度。
+* **Security & Cost Control**: Implements `express-rate-limit` to defend against abnormal traffic, and sets the maximum server execution instances (`maxInstances: 3`), ensuring no extra paid quota is consumed under the Blaze billing plan.
+* **安全與成本控制**: 實裝 `express-rate-limit` 防禦異常流量，並設定伺服器最高執行實例 (`maxInstances: 3`)，保障 Blaze 計費方案下不花費任何額外的付費額度。
 
 ---
 
@@ -106,8 +106,8 @@ firebase deploy --only hosting
 
 ## Disclaimer & Copyright / 免責與版權聲明
 
-1. This project is not affiliated with, endorsed by, or authorized by the game's developers or publishers (including Hypergryph, Longcheng, Ariel, Yostar, or Studio Montagne).
-1. 本專案與遊戲開發商或發行商（如鷹角網路、龍成網路、艾瑞爾網路、悠星網路或蒙塔山工作室）無任何關聯，也未經其授權。
+1. This project is not affiliated with, endorsed by, or authorized by the game's developers or publishers (including but not limited to Hypergryph, Longcheng, Ariel, Yostar, or Studio Montagne).
+1. 本專案與遊戲開發商或發行商（包括但不限於鷹角網路、龍成網路、艾瑞爾網路、悠星網路或蒙塔山工作室）無任何關聯，也未經其授權。
 
 2. Use this project entirely at your own risk. The author does not guarantee that using this project won't violate any terms of service or local laws, nor does the author guarantee protection against data leaks or provide any implied warranties. The author shall not be held liable for any damages or losses resulting from the use of this project.
 2. 任何使用本專案的人士，須自行承擔一切風險，專案作者不保證使用本專案不會違反任何機構的使用條款或任何地區的法律規範，專案作者不保證使用本專案不會造成任何個人資料的洩漏，專案作者不會負責任何因使用本專案而引致之損失，專案作者不會作出任何默示的擔保。

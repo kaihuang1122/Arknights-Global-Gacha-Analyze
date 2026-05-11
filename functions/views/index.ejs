@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="<%= lang === 'zh-tw' ? 'zh-Hant' : lang === 'zh-cn' ? 'zh-Hans' : lang === 'ja-jp' ? 'ja' : 'en' %>">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
@@ -7,7 +7,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Arknights 抽卡紀錄</title>
+    <title><%= t('index_title') %></title>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <!-- 載入你的 CSS -->
     <link rel="stylesheet" href="/css/your.css" />
@@ -114,7 +114,7 @@
             </div>
           </div>
           <div class="HgfD8Q">
-            <div class="tshJ_L"><%= nickname %> 的尋訪紀錄</div>
+            <div class="tshJ_L"><%= nickname %><%= t('user_record_suffix') %></div>
           </div>
         </div>
         <div class="MMIY1i">
@@ -130,19 +130,19 @@
             <img src="data:image/png;base64,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">
             <div class="WetgH2">
               <div></div>
-              <span>POOL SELECTOR<br>（不影響統計資訊）</span>
+              <span><%- t('pool_selector') %></span>
             </div>
           </div>
           <div class="nEG21w" style="overflow-y: auto;">
             <div style="padding: 1rem; color: #fff;">
               <div style="margin-bottom: 1rem; border-bottom: 1px solid #333; padding-bottom: 0.5rem; display: flex; align-items: flex-start;">
                 <input type="checkbox" id="filter-pool-all" checked style="margin-top: 3px; cursor: pointer;" />
-                <label for="filter-pool-all" style="margin-left: 0.5rem; font-size: 0.95rem; font-weight: bold; cursor: pointer; user-select: none; line-height: 1.3;">全選 / 全取消</label>
+                <label for="filter-pool-all" style="margin-left: 0.5rem; font-size: 0.95rem; font-weight: bold; cursor: pointer; user-select: none; line-height: 1.3;"><%= t('select_all') %></label>
               </div>
               <% 
                 let uniquePoolsMap = new Map();
                 logs.forEach(log => {
-                  let pName = log.poolName || `${log.poolId}（名稱未顯示）`;
+                  let pName = log.poolName || `${log.poolId}${t('pool_name_hidden')}`;
                   if (!uniquePoolsMap.has(log.poolId)) {
                     uniquePoolsMap.set(log.poolId, pName);
                   }
@@ -159,8 +159,15 @@
 
             <!-- Sidebar Footer Buttons (Moved inside nEG21w) -->
             <div style="padding: 0 1rem 2rem 1rem; border-top: 1px solid #333; margin-top: 1rem; padding-top: 1.5rem;">
-              <a href="/export" download style="display: block; width: 100%; padding: 0.8rem; text-align: center; background: rgba(255,255,255,0.1); color: #fff; text-decoration: none; border-radius: 4px; margin-bottom: 0.8rem; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">導出結果</a>
-              <a href="/logout" style="display: block; width: 100%; padding: 0.8rem; text-align: center; background: rgba(27,209,254,0.2); color: #1bd1fe; text-decoration: none; border-radius: 4px; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.3)'" onmouseout="this.style.background='rgba(27,209,254,0.2)'">登出</a>
+              <a href="/export" download style="display: block; width: 100%; padding: 0.8rem; text-align: center; background: rgba(255,255,255,0.1); color: #fff; text-decoration: none; border-radius: 4px; margin-bottom: 0.8rem; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'"><%= t('export_results') %></a>
+              <a href="/logout" style="display: block; width: 100%; padding: 0.8rem; text-align: center; background: rgba(27,209,254,0.2); color: #1bd1fe; text-decoration: none; border-radius: 4px; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.3)'" onmouseout="this.style.background='rgba(27,209,254,0.2)'"><%= t('logout') %></a>
+              
+              <select onchange="window.location.href='?lang='+this.value" style="display: block; width: 100%; margin-top: 1.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #333; padding: 0.5rem; border-radius: 4px; font-size: 0.9rem; outline: none; cursor: pointer;">
+                <option value="zh-tw" <%= lang === 'zh-tw' ? 'selected' : '' %>>繁體中文</option>
+                <option value="zh-cn" <%= lang === 'zh-cn' ? 'selected' : '' %>>简体中文</option>
+                <option value="ja-jp" <%= lang === 'ja-jp' ? 'selected' : '' %>>日本語</option>
+                <option value="en-us" <%= lang === 'en-us' ? 'selected' : '' %>>English</option>
+              </select>
             </div>
           </div>
         </div>
@@ -174,7 +181,7 @@
 
           <!-- 統計資訊：星級分佈（可折疊，預設展開） -->
           <div class="HgfD8Q">
-            <div class="tshJ_L">統計資訊 ▲</div>
+            <div class="tshJ_L"><%= t('stats_info') %> ▲</div>
             <div class="collapsible-content open">
               <div class="KXADwl">
                 <div class="Ysu7ON"></div>
@@ -194,36 +201,40 @@
                     let avgCost = allCounts['5'] > 0 ? (allCost / allCounts['5']).toFixed(2) : 0;
                   %>
                   <div class="dashboard-card">
-                      <h3>當前卡池狀態</h3>
-                      <p>您最後一次抽取的卡池為：<br/><span style="color: #fff; font-size: 1.3rem;"><%= stats.lastPullName %></span></p>
-                      <p>在該卡池中您一共投入了 <span class="highlight-number"><%= lastTotal %></span> 抽，距離上次六星已經墊了 <span class="highlight-number"><%= stats.accumulation %></span> 抽</p>
-                      <p>其中有 <span style="color: #f7ff00"><%= lastCounts['5'] %></span> 次 6 星 (<%= lastTotal > 0 ? (lastCounts['5']/lastTotal*100).toFixed(1) : 0 %>%)，<span style="color: #cc7a00"><%= lastCounts['4'] %></span> 次 5 星 (<%= lastTotal > 0 ? (lastCounts['4']/lastTotal*100).toFixed(1) : 0 %>%)，<br/>
-                      <span style="color: #a231ff"><%= lastCounts['3'] %></span> 次 4 星 (<%= lastTotal > 0 ? (lastCounts['3']/lastTotal*100).toFixed(1) : 0 %>%)，<span style="color: #19d1ff"><%= lastCounts['2'] %></span> 次 3 星 (<%= lastTotal > 0 ? (lastCounts['2']/lastTotal*100).toFixed(1) : 0 %>%)</p>
+                      <h3><%= t('current_pool_status') %></h3>
+                      <p><%= t('last_pool_drawn') %><br/><span style="color: #fff; font-size: 1.3rem;"><%= stats.lastPullName %></span></p>
+                      <p><%= t('invested_part1') %><span class="highlight-number"><%= lastTotal %></span> <%= t('invested_part2') %><span class="highlight-number"><%= stats.accumulation %></span> <%= t('invested_part3') %></p>
+                      <p><%= t('invested_part4') %> <span style="color: #f7ff00"><%= lastCounts['5'] %></span> <%= t('star_times') %>6<%= t('star') %> (<%= lastTotal > 0 ? (lastCounts['5']/lastTotal*100).toFixed(1) : 0 %>%)，<span style="color: #cc7a00"><%= lastCounts['4'] %></span> <%= t('star_times') %>5<%= t('star') %> (<%= lastTotal > 0 ? (lastCounts['4']/lastTotal*100).toFixed(1) : 0 %>%)，<br/>
+                      <span style="color: #a231ff"><%= lastCounts['3'] %></span> <%= t('star_times') %>4<%= t('star') %> (<%= lastTotal > 0 ? (lastCounts['3']/lastTotal*100).toFixed(1) : 0 %>%)，<span style="color: #19d1ff"><%= lastCounts['2'] %></span> <%= t('star_times') %>3<%= t('star') %> (<%= lastTotal > 0 ? (lastCounts['2']/lastTotal*100).toFixed(1) : 0 %>%)</p>
                   </div>
                   
                   <div class="dashboard-card">
-                      <h3>總覽資料</h3>
-                      <p>自 <span style="color: #10d1fe"><%= earliestDate %></span> 起，您一共投入了 <span class="highlight-number"><%= allTotal %></span> 抽<br/>共消耗 <span class="highlight-number" style="color: #C63A5A"><%= allCost %></span> 合成玉</p>
-                      <p>其中有 <span style="color: #f7ff00"><%= allCounts['5'] %></span> 次 6 星 (<%= allTotal > 0 ? (allCounts['5']/allTotal*100).toFixed(1) : 0 %>%)，<span style="color: #cc7a00"><%= allCounts['4'] %></span> 次 5 星 (<%= allTotal > 0 ? (allCounts['4']/allTotal*100).toFixed(1) : 0 %>%)，<br/>
-                      <span style="color: #a231ff"><%= allCounts['3'] %></span> 次 4 星 (<%= allTotal > 0 ? (allCounts['3']/allTotal*100).toFixed(1) : 0 %>%)，<span style="color: #19d1ff"><%= allCounts['2'] %></span> 次 3 星 (<%= allTotal > 0 ? (allCounts['2']/allTotal*100).toFixed(1) : 0 %>%)</p>
-                      <p>您的平均出金抽數為 <span class="highlight-number"><%= avgPulls %></span> 抽<br/>折合 <span class="highlight-number" style="color: #C63A5A"><%= avgCost %></span> 合成玉</p>
+                      <h3><%= t('overview') %></h3>
+                      <p><%= t('since') %><span style="color: #10d1fe"><%= earliestDate %></span> <%= t('total_invested') %><span class="highlight-number"><%= allTotal %></span><%= t('avg_pulls_part2') %><br/><%= t('total_spent') %><span class="highlight-number" style="color: #C63A5A"><%= allCost %></span><%= t('orundum') %></p>
+                      <p><%= t('invested_part4') %> <span style="color: #f7ff00"><%= allCounts['5'] %></span> <%= t('star_times') %>6<%= t('star') %> (<%= allTotal > 0 ? (allCounts['5']/allTotal*100).toFixed(1) : 0 %>%)，<span style="color: #cc7a00"><%= allCounts['4'] %></span> <%= t('star_times') %>5<%= t('star') %> (<%= allTotal > 0 ? (allCounts['4']/allTotal*100).toFixed(1) : 0 %>%)，<br/>
+                      <span style="color: #a231ff"><%= allCounts['3'] %></span> <%= t('star_times') %>4<%= t('star') %> (<%= allTotal > 0 ? (allCounts['3']/allTotal*100).toFixed(1) : 0 %>%)，<span style="color: #19d1ff"><%= allCounts['2'] %></span> <%= t('star_times') %>3<%= t('star') %> (<%= allTotal > 0 ? (allCounts['2']/allTotal*100).toFixed(1) : 0 %>%)</p>
+                      <p><%= t('avg_pulls_part1') %><span class="highlight-number"><%= avgPulls %></span><%= t('avg_pulls_part2') %><br/><%= t('avg_cost') %><span class="highlight-number" style="color: #C63A5A"><%= avgCost %></span><%= t('orundum') %></p>
                   </div>
               </div>
 
               <!-- 圓餅圖顯示區 -->
-              <h2 style="text-align: center; color: #fff; margin-top: 2rem;">星級分佈</h2>
+              <h2 style="text-align: center; color: #fff; margin-top: 2rem;"><%= t('star_distribution') %></h2>
               <div class="charts-container">
                   <!-- const categories = ['所有卡池', '限定尋訪', '標準尋訪', '中堅尋訪', '其他尋訪']; -->
                   <% const categories = ['限定尋訪', '標準尋訪', '中堅尋訪', '其他尋訪']; %>
                   <% categories.forEach(function(cat, index) { 
                       let c = stats.starcounts[cat] || { '5': 0, '4': 0, '3': 0, '2': 0 };
                       let total = c['5'] + c['4'] + c['3'] + c['2'];
+                      let displayCat = cat === '限定尋訪' ? t('pool_limited') :
+                                       cat === '標準尋訪' ? t('pool_standard') :
+                                       cat === '中堅尋訪' ? t('pool_kernel') :
+                                       t('pool_other');
                       let titleHtml;
                       if (cat === '標準尋訪' || cat === '中堅尋訪') {
                           let subcount = stats.countAcc[cat] || 0;
-                          titleHtml = cat + `（總計${total}抽）<br><span style="font-size: 0.9em; color: #ccc;">（已墊 ${subcount} 抽）</span>`;
+                          titleHtml = displayCat + `${t('total_pulls_count_prefix')}${total}${t('total_pulls_count_suffix')}<br><span style="font-size: 0.9em; color: #ccc;">${t('pity_acc_prefix')}${subcount}${t('pity_acc_suffix')}</span>`;
                       } else {
-                          titleHtml = cat + `（總計${total}抽）<br><span style="font-size: 0.9em;">&nbsp;</span>`;
+                          titleHtml = displayCat + `${t('total_pulls_count_prefix')}${total}${t('total_pulls_count_suffix')}<br><span style="font-size: 0.9em;">&nbsp;</span>`;
                       }
                   %>
                   <div class="chart-box">
@@ -231,7 +242,7 @@
                       <% if(total > 0) { %>
                           <canvas id="chart-pie-<%= index %>" width="250" height="250"></canvas>
                       <% } else { %>
-                          <div style="width: 250px; height: 250px; line-height: 250px; color: #888; font-size: 1.2rem;">無資料</div>
+                          <div style="width: 250px; height: 250px; line-height: 250px; color: #888; font-size: 1.2rem;"><%= t('no_data') %></div>
                       <% } %>
                   </div>
                   <% }); %>
@@ -239,18 +250,17 @@
 
               <!-- 注意事項 -->
               <div class="x82bAA">
-                <div class="tshJ_L">注意事項</div>
+                <div class="tshJ_L"><%= t('warning_title') %></div>
                 <div class="ab1yWq">
                   <div class="wYL2n2 Q25EOd"></div>
                   <div class="wYL2n2 xW0Sk9"></div>
                   <div class="wYL2n2 m8kOmo"></div>
                   <div class="wYL2n2 Mric6f"></div>
                   <div class="Xo6v7v">
-                    <div>1：限定尋訪包含：春節、慶典（週年）、夏季、連動，以上卡池之間保底不互通。</div>
-                    <div>2：標準尋訪包含：定向尋訪（單人輪換）、標準尋訪（雙人輪換）、定向選調（單UP）、標準選調（雙UP）、選調復刻、<br />
-                      &emsp;&emsp;聯合行動、前路回響、定向甄選，以上卡池之間保底互通。</div>
-                    <div>3：中堅尋訪包含：中堅尋訪（輪換）、中堅甄選，以上卡池之間保底互通。</div>
-                    <div>4：其他尋訪包含：跨年歡慶、跨年歡慶．中堅、新人特惠、剩餘未列出卡池（理應沒有），以上卡池之間保底不互通。</div>
+                    <div><%= t('idx_warning_1') %></div>
+                    <div><%- t('idx_warning_2') %></div>
+                    <div><%= t('idx_warning_3') %></div>
+                    <div><%= t('idx_warning_4') %></div>
                   </div>
                 </div>
                 <div class="KXADwl">
@@ -263,11 +273,11 @@
                   <div class="wYL2n2 m8kOmo"></div>
                   <div class="wYL2n2 Mric6f"></div>
                   <div class="Xo6v7v">
-                    <div>5：抽數的計算規則：標準尋訪與中堅尋訪將繼承保底進度累計計算，其餘尋訪依卡池分開計算。</div>
-                    <div>6：抓取結果理論上與官網查詢結果一致，可能與遊戲內實際操作存在延遲。</div>
-                    <div>7：如果官方的紀錄中有出現卡池欄位為空白的情況，這裡會顯示卡池ID並標注名稱未顯示。</div>
-                    <div>8：如果抓取紀錄與官網紀錄存在差異，可重新抓取，若無法解決，可聯繫網站作者或逕行修改json檔案。</div>
-                    <div>9：如果官網紀錄與遊戲內實際操作存在差異，請直接聯繫官方客服。</div>
+                    <div><%= t('idx_warning_5') %></div>
+                    <div><%= t('idx_warning_6') %></div>
+                    <div><%= t('idx_warning_7') %></div>
+                    <div><%= t('idx_warning_8') %></div>
+                    <div><%= t('idx_warning_9') %></div>
                   </div>
                 </div>
               </div>
@@ -276,20 +286,20 @@
 
           <!-- 近期出金（可折疊，預設展開） -->
           <div class="HgfD8Q">
-            <div class="tshJ_L">近期出金 ▲</div>
+            <div class="tshJ_L"><%= t('recent_6star') %> ▲</div>
             <div class="collapsible-content open">
               <div class="KXADwl">
                 <div class="Ysu7ON"></div>
                 <span></span><span></span>
               </div>
               <div style="display: flex; justify-content: flex-start; margin-bottom: 0.5rem; padding-left: 13.5rem;">
-                 <span style="font-size: 0.9rem; color: #10d1fe; cursor: pointer; user-select: none; font-weight: bold;" onclick="toggleAllGroups('recent')">[ 全部摺疊 / 展開 ]</span>
+                 <span style="font-size: 0.9rem; color: #10d1fe; cursor: pointer; user-select: none; font-weight: bold;" onclick="toggleAllGroups('recent')"><%= t('collapse_all') %></span>
               </div>
               <div class="mzlLY0">
                 <div class="pvfQQe">
-                  <div class="_P1qVa">獲得幹員（抽數）</div>
-                  <div class="Zs7Y7r">尋訪卡池</div>
-                  <div class="GETong">尋訪時間</div>
+                  <div class="_P1qVa"><%= t('operator_got') %></div>
+                  <div class="Zs7Y7r"><%= t('pool') %></div>
+                  <div class="GETong"><%= t('pull_time') %></div>
                 </div>
                 
                 <div class="EkxzYd" id="recent-container">
@@ -312,7 +322,7 @@
                       let pTotal = pStats['5'] + pStats['4'] + pStats['3'] + pStats['2'];
                   %>
                   <div class="pool-group-wrapper" data-pool="<%= group.poolId %>">
-                    <div class="tshJ_L" style="background: rgba(255,255,255,0.05); margin: 6px 0 6px 0; height: 2rem; padding: 4px 15px; font-size: 1rem; line-height: 1.5; color: #10d1fe; border-radius: 4px; border-left: 4px solid #10d1fe;"><%= group.poolName %>（<%= pTotal %>抽） ▲</div>
+                    <div class="tshJ_L" style="background: rgba(255,255,255,0.05); margin: 6px 0 6px 0; height: 2rem; padding: 4px 15px; font-size: 1rem; line-height: 1.5; color: #10d1fe; border-radius: 4px; border-left: 4px solid #10d1fe;"><%= group.poolName %>（<%= pTotal %><%= t('pulls_count_suffix') %> ▲</div>
                     <div class="collapsible-content open" style="margin-bottom: 0.5rem;">
                       <% group.items.forEach(function(item) { 
                         let sc = starClasses[item.rarity] || 'spIT3K';
@@ -354,7 +364,7 @@
 
           <!-- 尋訪記錄：顯示所有角色（可折疊，預設展開） -->
           <div class="HgfD8Q">
-            <div class="tshJ_L">尋訪記錄 ▲</div>
+            <div class="tshJ_L"><%= t('history') %> ▲</div>
             <div class="collapsible-content open">
               <div class="KXADwl">
                 <div class="Ysu7ON"></div>
@@ -365,9 +375,9 @@
               </div>
               <div class="mzlLY0">
                 <div class="pvfQQe">
-                  <div class="_P1qVa">獲得幹員</div>
-                  <div class="Zs7Y7r">尋訪卡池</div>
-                  <div class="GETong">尋訪時間</div>
+                  <div class="_P1qVa"><%= t('operator_got_no_pulls') %></div>
+                  <div class="Zs7Y7r"><%= t('pool') %></div>
+                  <div class="GETong"><%= t('pull_time') %></div>
                 </div>
                 <div class="EkxzYd" id="history-container">
                   <% 
@@ -493,7 +503,7 @@
       Chart.defaults.font.family = "'Noto Sans JP', 'cwTeXHeiBold', 'Heiti TC', sans-serif";
       
       const chartColors = ['#f7ff00', '#cc7a00', '#a231ff', '#19d1ff'];
-      const chartLabels = ['6星', '5星', '4星', '3星'];
+      const chartLabels = ['6<%= t('star').trim() %>', '5<%= t('star').trim() %>', '4<%= t('star').trim() %>', '3<%= t('star').trim() %>'];
       
       const starcountsData = <%- JSON.stringify(stats.starcounts) %>;
       const categories = ['所有卡池', '限定尋訪', '標準尋訪', '中堅尋訪', '其他尋訪'];
@@ -579,9 +589,9 @@
     <!-- Global Footer Menu -->
     <div id="footer-menu-container" style="position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 99999; font-family: sans-serif; user-select: none;">
       <div id="footer-menu-links" style="display: none; flex-direction: column; align-items: flex-end; margin-bottom: 0.5rem; gap: 0.5rem;">
-        <a href="https://github.com/kaihuang1122/Arknights-txwy-Gacha-Analyze" target="_blank" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'">GitHub 原始碼</a>
-        <a href="/privacy" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'">隱私權政策</a>
-        <a href="javascript:void(0);" onclick="document.body.scrollTo({top: 0, behavior: 'smooth'}); document.documentElement.scrollTo({top: 0, behavior: 'smooth'}); window.scrollTo({top: 0, behavior: 'smooth'});" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'">↑ 回到頁首</a>
+        <a href="https://github.com/kaihuang1122/Arknights-txwy-Gacha-Analyze" target="_blank" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'"><%= t('github_code') %></a>
+        <a href="/privacy" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'"><%= t('privacy_policy') %></a>
+        <a href="javascript:void(0);" onclick="document.body.scrollTo({top: 0, behavior: 'smooth'}); document.documentElement.scrollTo({top: 0, behavior: 'smooth'}); window.scrollTo({top: 0, behavior: 'smooth'});" style="background: rgba(0,0,0,0.8); color: #1bd1fe; padding: 0.6rem 1.2rem; border-radius: 4px; text-decoration: none; border: 1px solid #1bd1fe; font-size: 0.9rem; white-space: nowrap; font-weight: bold; transition: background 0.3s;" onmouseover="this.style.background='rgba(27,209,254,0.2)'" onmouseout="this.style.background='rgba(0,0,0,0.8)'"><%= t('back_to_top') %></a>
       </div>
       <div id="footer-menu-toggle" style="background: rgba(0, 0, 0, 0.8); width: 3rem; height: 3rem; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 2px solid #1bd1fe; float: right; transition: all 0.3s; color: #1bd1fe; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
         ▼
