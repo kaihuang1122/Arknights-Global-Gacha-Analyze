@@ -7,6 +7,7 @@
   "main_heading": "アークナイツ Yostar版 ガチャ記録分析",
   "latest_news": "最新情報",
   "news_content": "🌐 当サイトはYostarのEN、JP、KRサーバーに対応しています。こちらへ<a href=\"https://arknights-txwy-gacha.web.app\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">台湾版</a>または<a href=\"https://arkgacha.kwer.top/\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">大陸版（外部サイト）</a>",
+  "news_content_2": "✨ Androidユーザーは<a href=\"\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">専用アプリ</a>を、PCユーザーは<a href=\"https://chromewebstore.google.com/detail/arknights-global-gacha-he/nhcaaohadcjldnfbfpgghegfbcnhbacj\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">ブラウザ拡張機能</a>をインストールすることで、ワンクリックで履歴を取得できます。",
   "method_1_title": "方法1：Cookie（記録取得）",
   "server_label": "サーバー (Server)",
   "server_jp": "日本語版 (account.yostar.co.jp)",

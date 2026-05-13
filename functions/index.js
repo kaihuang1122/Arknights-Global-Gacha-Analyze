@@ -156,6 +156,31 @@ app.post('/login', async (req, res) => {
             } else {
                 return res.render('login', { flash: '找不到該 ID 的紀錄' });
             }
+        } else if (method === 'app_sync') {
+            const uid = req.body.uid;
+            let logs = req.body.logs;
+            if (typeof logs === 'string') {
+                try { logs = JSON.parse(logs); } catch(e) { console.error("Failed to parse logs", e); }
+            }
+            if (!uid || uid.length < 5 || isNaN(uid)) {
+                return res.status(400).send('請提供有效的 ID');
+            }
+            if (logs && Array.isArray(logs)) {
+                const logsDocRef = db.collection('users').doc(uid).collection('data').doc('logs');
+                const logsDoc = await logsDocRef.get();
+                if (logsDoc.exists) {
+                    const data = logsDoc.data();
+                    let existing = data.jsonString ? JSON.parse(data.jsonString) : (data.records || []);
+                    logs = mergeLogs(logs, existing);
+                }
+                await db.collection('users').doc(uid).set({ info: { uid: uid, nickName: uid } }, { merge: true });
+                await logsDocRef.set({ jsonString: JSON.stringify(logs) });
+                
+                res.cookie('__session', uid, { signed: true, httpOnly: true });
+                return res.redirect('/');
+            } else {
+                return res.status(400).send('請提供 ID 與檔案格式錯誤');
+            }
         } else if (method === 'upload') {
             const uid = req.body.uid;
             let logs = req.body.logs;

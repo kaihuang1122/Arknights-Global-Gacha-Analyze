@@ -7,6 +7,7 @@
   "main_heading": "Arknights Global Gacha Analyzer",
   "latest_news": "Latest News",
   "news_content": "🌐 This site supports Yostar's EN, JP, and KR servers. Click here for <a href=\"https://arknights-txwy-gacha.web.app\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">TW Server</a> or <a href=\"https://arkgacha.kwer.top/\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">CN Server (External)</a>.",
+  "news_content_2": "✨ Android users can install our <a href=\"\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">Exclusive APP</a>, and PC users can install the <a href=\"https://chromewebstore.google.com/detail/arknights-global-gacha-he/nhcaaohadcjldnfbfpgghegfbcnhbacj\" target=\"_blank\" style=\"color: #1bd1fe; text-decoration: underline; padding: 0 0.2rem;\">Browser Extension</a> for one-click record extraction.",
   "method_1_title": "Method 1: Cookie (Fetch Records)",
   "server_label": "Server",
   "server_jp": "JP Server (account.yostar.co.jp)",
