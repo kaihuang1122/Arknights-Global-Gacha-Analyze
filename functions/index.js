@@ -158,7 +158,10 @@ app.post('/login', async (req, res) => {
             }
         } else if (method === 'upload') {
             const uid = req.body.uid;
-            const logs = req.body.logs;
+            let logs = req.body.logs;
+            if (typeof logs === 'string') {
+                try { logs = JSON.parse(logs); } catch(e) { console.error("Failed to parse logs", e); }
+            }
             if (!uid || uid.length < 5 || isNaN(uid)) {
                 return res.status(400).send('請提供有效的 ID');
             }
