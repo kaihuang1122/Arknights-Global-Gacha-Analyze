@@ -188,6 +188,9 @@ app.post('/login', async (req, res) => {
                 return res.status(400).send('請提供有效的 ID');
             }
             if (logs && Array.isArray(logs)) {
+                // Ensure logs are sorted chronologically ascending before merging
+                logs.sort((a, b) => a.at - b.at);
+                
                 const logsDocRef = db.collection('users').doc(uid).collection('data').doc('logs');
                 const logsDoc = await logsDocRef.get();
                 if (logsDoc.exists) {
