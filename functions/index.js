@@ -49,8 +49,30 @@ const locales = {
 };
 
 app.use((req, res, next) => {
-    let lang = req.query.lang || req.cookies.lang || 'zh-tw';
-    if (!locales[lang]) lang = 'zh-tw';
+    let lang = req.query.lang || req.cookies.lang;
+    
+    if (!lang) {
+        const acceptedLangs = req.acceptsLanguages();
+        if (acceptedLangs && acceptedLangs.length > 0) {
+            for (let accepted of acceptedLangs) {
+                const lower = accepted.toLowerCase();
+                if (lower.startsWith('zh-tw') || lower.startsWith('zh-hk') || lower === 'zh-hant') {
+                    lang = 'zh-tw'; break;
+                } else if (lower.startsWith('zh-cn') || lower.startsWith('zh-hans') || lower === 'zh') {
+                    lang = 'zh-cn'; break;
+                } else if (lower.startsWith('ja')) {
+                    lang = 'ja-jp'; break;
+                } else if (lower.startsWith('en')) {
+                    lang = 'en-us'; break;
+                }
+            }
+        }
+    }
+    
+    if (!lang || !locales[lang]) {
+        lang = 'en-us';
+    }
+
     res.cookie('lang', lang, { maxAge: 31536000000, httpOnly: true }); // 1 year
     
     res.locals.lang = lang;
